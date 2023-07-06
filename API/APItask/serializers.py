@@ -17,8 +17,6 @@ class PostSerializer(serializers.Serializer):
                                         author=self.context['user'])
 
 
-
-
 class PostSerializerUpdate(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     title = serializers.CharField(required=False)
@@ -31,10 +29,3 @@ class PostSerializerUpdate(serializers.Serializer):
         instance.content = validated_data.get('content', instance.content)
         instance.save()
         return instance
-
-
-"""Model serializer"""
-# class PostSerializer(ModelSerializer):
-#     class Meta:
-#         model = PostModel
-#         fields = '__all__'
