@@ -5,17 +5,18 @@ from .models import PostModel
 
 
 class PostSerializer(serializers.Serializer):
-
     id = serializers.IntegerField(read_only=True)
     title = serializers.CharField(max_length=255)
     content = serializers.CharField()
     time_create = serializers.DateTimeField(read_only=True)
-    author = serializers.CharField(required=False)
+    author = serializers.CharField(read_only=True)
 
     def create(self, validated_data):
         return PostModel.objects.create(title=validated_data['title'],
                                         content=validated_data['content'],
                                         author=self.context['user'])
+
+
 
 
 class PostSerializerUpdate(serializers.Serializer):
